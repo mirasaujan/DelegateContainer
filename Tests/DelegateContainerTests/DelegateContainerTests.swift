@@ -1,7 +1,7 @@
 import XCTest
-@testable import DelegateObserver
+@testable import DelegateContainer
 
-final class DelegateObserverTests: XCTestCase {
+final class DelegateContainerTests: XCTestCase {
     func testExample() {
     }
 
