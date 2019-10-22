@@ -1,5 +1,4 @@
-
-class DelegateContainer<T: AnyObject> {
+open class DelegateContainer<T: AnyObject> {
     /// Wrapper around observer
     struct Observation {
         weak var observer: T?
