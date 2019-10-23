@@ -7,16 +7,16 @@ open class DelegateContainer<T: AnyObject> {
     private var observations = [ObjectIdentifier : Observation]()
     
     /// Gets all observers, while removing deinit-ed objects behind the scences
-    var observers: [T?] {
-        var relevantObservations = [T?]()
+    var observers: [T] {
+        var relevantObservations = [T]()
         for (id, observation) in observations {
             
-            guard observation.observer != nil else {
+            guard let observer = observation.observer else {
                 observations.removeValue(forKey: id)
                 continue
             }
             
-            relevantObservations.append(observation.observer)
+            relevantObservations.append(observer)
         }
         
         return relevantObservations
@@ -25,7 +25,7 @@ open class DelegateContainer<T: AnyObject> {
     
     /// Perform operation on each observer
     /// - Parameter block: block to perform on each operation
-    func perform(_ block: (T?) -> Void) {
+    func perform(_ block: (T) -> Void) {
         for observer in observers {
             block(observer)
         }
