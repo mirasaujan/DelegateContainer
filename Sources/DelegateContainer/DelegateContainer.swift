@@ -10,7 +10,6 @@ open class DelegateContainer<T: AnyObject> {
     var observers: [T] {
         var relevantObservations = [T]()
         for (id, observation) in observations {
-            
             guard let observer = observation.observer else {
                 observations.removeValue(forKey: id)
                 continue
