@@ -8,7 +8,7 @@
 import Foundation
 
 /// Type that would notify observers
-protocol Publishable {
+public protocol Publishable {
     associatedtype SomeType: AnyObject
     var delegateContainer: DelegateContainer<SomeType> { get }
 }

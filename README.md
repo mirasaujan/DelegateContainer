@@ -2,6 +2,9 @@
 
 An object designed to help with one to many delegation problems. 
 
+## What is it for?
+It helps with dynamic data. 
+
 ## Usage
 
 You need to make your delegate with @objc so it restricts type to class only
@@ -31,7 +34,7 @@ class Chat: Publishable {
 }
 ```
 
-  
+Just subscribe to updates and conform to your protocol.   
 ```swift
 import DelegateContainer
 import UIKit
@@ -46,16 +49,11 @@ class TabBarViewController: UITabBarController {
     }
 }
 
-extension TabBarViewController {
+extension TabBarViewController: NewMessageResponder {
     func chat(_ chat: Chat, receivedNewMessage newMessage: Message) {
         configureBadge()
     }
 }
-```
-
-```swift
-import DelegateContainer
-import UIKit
 
 class ChatViewController: UIViewController {
     let chat = Chat()
@@ -67,7 +65,7 @@ class ChatViewController: UIViewController {
     }
 }
 
-extension ChatViewController {
+extension ChatViewController: NewMessageResponder {
     func chat(_ chat: Chat, receivedNewMessage newMessage: Message) {
         tableView.reloadData()
     }
