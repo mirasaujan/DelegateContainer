@@ -6,6 +6,8 @@ open class DelegateContainer<T: AnyObject> {
     
     private var observations = [ObjectIdentifier : Observation]()
     
+    open init() {}
+    
     /// Gets all observers, while removing deinit-ed objects behind the scences
     var observers: [T] {
         var relevantObservations = [T]()
