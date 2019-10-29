@@ -7,7 +7,7 @@ public protocol DelegateContainer: AnyObject {
     var observations: [ObjectIdentifier : Observation<Observer>] { get set }
 }
 
-extension DelegateContainer {
+public extension DelegateContainer {
     /// Gets all observers, while removing deinit-ed objects behind the scences
     var observers: [Observer] {
         var relevantObservations = [Observer]()
