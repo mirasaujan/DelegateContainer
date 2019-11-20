@@ -8,26 +8,21 @@ public protocol DelegateContainer: AnyObject {
 }
 
 public extension DelegateContainer {
-    /// Gets all observers, while removing deinit-ed objects behind the scences
+    /// Gets all observers
     var observers: [Observer] {
-        var relevantObservations = [Observer]()
+        return observations.values.compactMap { $0.observer }
+    }
+    
+    
+    /// Perform operation on each observer
+    /// - Parameter block: block to perform on each observer
+    func perform(_ block: (Observer) -> Void) {
         for (id, observation) in observations {
             guard let observer = observation.observer else {
                 observations.removeValue(forKey: id)
                 continue
             }
             
-            relevantObservations.append(observer)
-        }
-        
-        return relevantObservations
-    }
-    
-    
-    /// Perform operation on each observer
-    /// - Parameter block: block to perform on each operation
-    func perform(_ block: (Observer) -> Void) {
-        for observer in observers {
             block(observer)
         }
     }
