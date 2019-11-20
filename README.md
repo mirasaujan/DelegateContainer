@@ -72,6 +72,33 @@ extension ChatViewController: NewMessageResponder {
 }
 ```
 
+Advanced usage
+```swift
+import DelegateContainer
+
+protocol Observer {
+    func someFunc()
+}
+
+class AnyObserver: Observer {
+    private let observer: Observer
+    
+    init(observer: Observer) {
+        self.observer = observer
+    }
+    
+    func someFunc() {
+        observer.someFunc()
+    }
+}
+
+class SomeContainer: DelegateContainer {
+    var observations = [ObjectIdentifier : Observation<AnyObserver>]()
+    
+    typealias Observer = AnyObserver
+}
+```
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
