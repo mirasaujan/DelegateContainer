@@ -5,6 +5,8 @@ public struct Observation<Observer: AnyObject> {
 public protocol DelegateContainer: AnyObject {
     associatedtype Observer: AnyObject
     var observations: [ObjectIdentifier : Observation<Observer>] { get set }
+    
+    public init() {}
 }
 
 public extension DelegateContainer {
