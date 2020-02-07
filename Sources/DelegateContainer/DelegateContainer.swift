@@ -14,7 +14,7 @@ open class DelegateContainer<T: AnyObject> {
     
     /// Perform operation on each observer
     /// - Parameter block: block to perform on each operation
-    func perform(_ block: (T) -> Void) {
+    public func perform(_ block: (T) -> Void) {
         for (id, observation) in observations {
             guard let observer = observation.observer else {
                 observations.removeValue(forKey: id)
@@ -27,14 +27,14 @@ open class DelegateContainer<T: AnyObject> {
     
     /// Adds observer
     /// - Parameter observer: observer to add
-    func addObserver(_ observer: T) {
+    public func addObserver(_ observer: T) {
         let id = ObjectIdentifier(observer)
         observations[id] = Observation(observer: observer)
     }
     
     /// Removes observer
     /// - Parameter observer: observer to remove
-    func removeObserver(_ observer: T) {
+    public func removeObserver(_ observer: T) {
         let id = ObjectIdentifier(observer)
         observations.removeValue(forKey: id)
     }
